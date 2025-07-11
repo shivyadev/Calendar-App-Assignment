@@ -1,0 +1,13 @@
+.ant-picker-cell {
+  border: 1px rgb(135, 133, 133, 0.2) solid;
+}
+
+.ant-picker-content thead th {
+  text-align: center;
+  padding-inline-end: 0 !important;
+}
+
+.ant-picker-content {
+  text-align: right;
+  font-size: 12px;
+}
