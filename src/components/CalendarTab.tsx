@@ -1,14 +1,15 @@
+import type { RootState } from "@/app/store";
 import { Calendar, Modal } from "antd";
 import locale from "antd/es/date-picker/locale/en_US";
 import type { Dayjs } from "dayjs";
+import dayjs from "dayjs";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import TaskForm from "./forms/TaskForm/TaskForm";
 
 function CalendarTab() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedDate, setSelectedDate] = useState<Dayjs | undefined>(
-    undefined
-  );
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [selectedDate, setSelectedDate] = useState<Dayjs>(dayjs());
 
   const handleSelect = (date: Dayjs) => {
     setSelectedDate(date);
@@ -31,6 +32,8 @@ function CalendarTab() {
     },
   };
 
+  console.log(useSelector((state: RootState) => state.tasks));
+
   return (
     <div className="">
       <Calendar locale={customLocale} onSelect={handleSelect} />
@@ -42,7 +45,10 @@ function CalendarTab() {
         onCancel={handleCancel}
         footer={[]}
       >
-        <TaskForm date={selectedDate?.format("MMM DD, YYYY")} />
+        <TaskForm
+          date={selectedDate?.format("MMM DD, YYYY")}
+          setIsModalOpen={setIsModalOpen}
+        />
       </Modal>
     </div>
   );
