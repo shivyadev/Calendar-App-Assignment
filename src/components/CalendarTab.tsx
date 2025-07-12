@@ -1,7 +1,7 @@
 import { Calendar } from "antd";
 import locale from "antd/es/date-picker/locale/en_US";
 
-function CalendarDisplay() {
+function CalendarTab() {
   const customLocale = {
     ...locale,
     lang: {
@@ -12,9 +12,9 @@ function CalendarDisplay() {
 
   return (
     <div className="">
-      <Calendar locale={customLocale} className="" />
+      <Calendar locale={customLocale} />
     </div>
   );
 }
 
-export default CalendarDisplay;
+export default CalendarTab;
