@@ -22,14 +22,6 @@ const FilterDropdown = ({
     );
   };
 
-  const handleSelectAll = () => {
-    setTempSelection(allCategories);
-  };
-
-  const handleDeselectAll = () => {
-    setTempSelection([]);
-  };
-
   const handleApply = () => {
     setSelectedCategories(tempSelection);
   };

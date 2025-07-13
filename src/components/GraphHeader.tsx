@@ -5,7 +5,7 @@ interface Props {
 
 function GraphHeader({ setChartType, chartType }: Props) {
   return (
-    <div className="flex items-center justify-between mx-5 mb-4">
+    <div className="flex items-center justify-between p-4 mx-5 mb-2 border border-gray-200 rounded-lg">
       <div className="flex flex-col">
         <h2 className="text-2xl font-semibold text-center">Task Categories</h2>
         <p className="text-center text-gray-500">

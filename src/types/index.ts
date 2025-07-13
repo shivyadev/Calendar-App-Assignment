@@ -17,6 +17,13 @@ export const categoryStyle: Record<Category, string> = {
   info: "bg-blue-700 hover:bg-blue-600",
 };
 
+export const graphCategoryColors: Record<Category, string> = {
+  success: "#52c41a", // Green
+  warning: "#faad14", // Orange/Yellow
+  info: "#1890ff", // Blue
+  issue: "#ff4d4f", // Red
+};
+
 export const categoryIcons: Record<Category, typeof CheckCircleFilled> = {
   success: CheckCircleFilled,
   warning: ExclamationCircleFilled,

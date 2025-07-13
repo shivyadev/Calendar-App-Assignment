@@ -1,6 +1,7 @@
 import type { TaskProp } from "@/types";
 import { getCategoryCounts } from "@/utils/taskUtils";
 import { useMemo, useState } from "react";
+import DisplayGraph from "./DisplayGraph";
 import FilterDropdown from "./FilterDropdown";
 import GraphHeader from "./GraphHeader";
 
@@ -18,7 +19,6 @@ function TaskCategoryChart({ task }: TaskProp) {
   const filteredData = rawData.filter((d) =>
     selectedCategories.includes(d.category)
   );
-  const totalTasks = filteredData.reduce((sum, item) => sum + item.value, 0);
 
   return (
     <div>
@@ -29,6 +29,7 @@ function TaskCategoryChart({ task }: TaskProp) {
         setTempSelection={setTempSelection}
         setSelectedCategories={setSelectedCategories}
       />
+      <DisplayGraph chartType={chartType} filteredData={filteredData} />
     </div>
   );
 }
