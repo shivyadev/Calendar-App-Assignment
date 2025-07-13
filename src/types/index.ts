@@ -40,3 +40,7 @@ export interface TaskPayload {
 export interface TaskState {
   [date: string]: Task[];
 }
+
+export interface TaskProp {
+  task: Record<string, Task[]>;
+}

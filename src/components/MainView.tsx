@@ -1,41 +1,44 @@
 import { BarChartOutlined, CalendarOutlined } from "@ant-design/icons";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import type { RootState } from "../app/store";
 import CalendarTab from "./CalendarTab";
 import GraphTab from "./GraphTab";
 
 function MainView() {
   const [activeTab, setActiveTab] = useState("1");
+  const task = useSelector((state: RootState) => state.tasks);
 
   const tabs = [
     {
       key: "1",
       label: "Calendar",
       icon: <CalendarOutlined className="text-xl" />,
-      content: <CalendarTab />,
+      content: <CalendarTab task={task} />,
     },
     {
       key: "2",
       label: "Analytics",
       icon: <BarChartOutlined className="text-xl" />,
-      content: <GraphTab />,
+      content: <GraphTab task={task} />,
     },
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 p-6">
+    <div className="min-h-screen p-6 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
       <div className="w-full max-w-6xl mx-auto">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent mb-2">
+        <div className="mb-12 text-center">
+          <h1 className="mb-2 text-4xl font-bold text-transparent bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text">
             Task Calendar
           </h1>
-          <p className="text-gray-600 text-lg">
+          <p className="text-lg text-gray-600">
             Manage your calendar and track analytics
           </p>
         </div>
 
-        <div className="bg-white/80 rounded-2xl shadow-xl border border-white/20">
+        <div className="border shadow-xl bg-white/80 rounded-2xl border-white/20">
           <div className="p-2">
-            <div className="flex bg-white rounded-xl p-1">
+            <div className="flex p-1 bg-white rounded-xl">
               {tabs.map((tab) => {
                 return (
                   <button

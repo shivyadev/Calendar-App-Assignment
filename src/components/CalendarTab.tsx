@@ -1,16 +1,14 @@
-import type { RootState } from "@/app/store";
-import type { Task } from "@/types";
+import type { Task, TaskProp } from "@/types";
 import { Calendar, Modal, type CalendarProps } from "antd";
 import locale from "antd/es/date-picker/locale/en_US";
 import type { Dayjs } from "dayjs";
 import dayjs from "dayjs";
 import { useState } from "react";
-import { useSelector } from "react-redux";
 import CellContents from "./CellContents";
 import TaskForm from "./forms/TaskForm/TaskForm";
 import TaskModal from "./TaskModal";
 
-function CalendarTab() {
+function CalendarTab({ task }: TaskProp) {
   const [isAddModalOpen, setIsAddModalOpen] = useState<boolean>(false);
   const [isTaskModalOpen, setIsTaskModalOpen] = useState<boolean>(false);
   const [selectedDate, setSelectedDate] = useState<Dayjs | undefined>(
@@ -24,8 +22,6 @@ function CalendarTab() {
     description: "",
     category: "default",
   });
-
-  const task = useSelector((state: RootState) => state.tasks);
 
   const handleSelect = (date: Dayjs) => {
     if (isTaskModalOpen) {
