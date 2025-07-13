@@ -28,6 +28,13 @@ function MainView() {
     <div className="min-h-screen p-6 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
       <div className="w-full max-w-6xl mx-auto">
         <div className="mb-12 text-center">
+          <div className="inline-flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-gradient-to-r from-blue-500 to-purple-600">
+            <img
+              src="/calendar-days.svg"
+              alt="Calendar Day"
+              className="w-10 h-10"
+            />
+          </div>
           <h1 className="mb-2 text-4xl font-bold text-transparent bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text">
             Task Calendar
           </h1>
@@ -62,7 +69,6 @@ function MainView() {
             </div>
           </div>
 
-          {/* Enhanced Tab Content */}
           <div className="p-8">
             <div className="transition-all duration-300 ease-in-out">
               {tabs.find((tab) => tab.key === activeTab)?.content}

@@ -1,14 +1,20 @@
 import { type Category, categoryStyle, type Task } from "@/types";
+import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+
+dayjs.extend(customParseFormat);
 
 interface Props {
   task: Task;
 }
 
 function TaskDetailsCard({ task }: Props) {
+  const date = dayjs(task.date, "MMM DD, YYYY");
+
   return (
-    <section>
+    <div>
       <h2 className="mb-2 text-4xl font-bold">{task?.title}</h2>
-      <p className="mb-6 text-gray-600">{task?.date.format("dddd, MMMM DD")}</p>
+      <p className="mb-6 text-gray-600">{date.format("dddd, MMMM DD")}</p>
 
       {task?.description && task?.description?.length > 0 && (
         <div className="mt-10">
@@ -30,7 +36,7 @@ function TaskDetailsCard({ task }: Props) {
             : "Not Set"}
         </span>
       </div>
-    </section>
+    </div>
   );
 }
 

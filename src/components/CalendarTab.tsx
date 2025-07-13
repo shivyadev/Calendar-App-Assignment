@@ -18,7 +18,7 @@ function CalendarTab({ task }: TaskProp) {
   const [selectedTask, setSelectedTask] = useState<Task>({
     id: "",
     title: "",
-    date: dayjs(),
+    date: "",
     description: "",
     category: "default",
   });
@@ -50,7 +50,7 @@ function CalendarTab({ task }: TaskProp) {
     setSelectedTask({
       id: "",
       title: "",
-      date: dayjs(),
+      date: "",
       description: "",
       category: "default",
     });
@@ -91,7 +91,6 @@ function CalendarTab({ task }: TaskProp) {
         onPanelChange={handlePanelChange}
       />
 
-      {/* Add new task modal */}
       <Modal
         closable={{ "aria-label": "Custom Close Button" }}
         open={isAddModalOpen}
@@ -99,13 +98,15 @@ function CalendarTab({ task }: TaskProp) {
         footer={[]}
       >
         <TaskForm
-          date={selectedDate ?? dayjs()}
+          date={
+            selectedDate?.format("MMM DD, YYYY") ??
+            dayjs().format("MMM DD, YYYY")
+          }
           setIsModalOpen={setIsAddModalOpen}
           mode="add"
         />
       </Modal>
 
-      {/* View/Edit task modal */}
       <TaskModal
         task={selectedTask}
         isOpen={isTaskModalOpen}

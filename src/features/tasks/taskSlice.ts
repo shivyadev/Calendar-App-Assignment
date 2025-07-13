@@ -16,7 +16,7 @@ const taskSlice = createSlice({
     },
     updateTask: (state, action: PayloadAction<Task>) => {
       const updatedTask = action.payload;
-      const date = updatedTask.date.format("MMM DD, YYYY");
+      const date = updatedTask.date;
       if (state[date]) {
         const taskIndex = state[date].findIndex(
           (task) => task.id === updatedTask.id
@@ -29,7 +29,7 @@ const taskSlice = createSlice({
     deleteTask: (state, action: PayloadAction<Task>) => {
       const task = action.payload;
       const { id } = task;
-      const date = task.date.format("MMM DD, YYYY");
+      const date = task.date;
       if (state[date]) {
         state[date] = state[date].filter((task) => task.id !== id);
         if (state[date].length === 0) {

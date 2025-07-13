@@ -91,7 +91,6 @@ const FilterDropdown = ({
         </Dropdown>
       </div>
 
-      {/* Apply and Reset Buttons */}
       <div className="flex gap-3">
         <button
           onClick={handleApply}

@@ -19,10 +19,11 @@ function CellContents({
 
   return (
     <div className="mt-2">
-      {taskList.map((task: Task) => {
+      {taskList.map((task: Task, idx: number) => {
         const Icon = categoryIcons[task.category];
         return (
           <div
+            key={idx}
             className={`flex items-center gap-2 mt-1 rounded-full text-white transition-all duration-300 ${
               categoryStyle[task.category]
             }`}

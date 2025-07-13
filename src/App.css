@@ -11,3 +11,18 @@
   text-align: right;
   font-size: 12px;
 }
+
+.ant-modal-close:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.ant-modal-close {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.ant-modal-close-icon {
+  margin: 0 !important;
+  padding: 0 !important;
+}

@@ -6,14 +6,13 @@ import {
   ClockCircleOutlined,
   UnorderedListOutlined,
 } from "@ant-design/icons";
-import type { Dayjs } from "dayjs";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { nanoid } from "nanoid";
 import { useDispatch } from "react-redux";
 import FormSchema from "./TaskSchema";
 
 interface FormProps {
-  date: Dayjs;
+  date: string;
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   task?: Task;
   mode?: "edit" | "add";
@@ -21,13 +20,12 @@ interface FormProps {
 
 function TaskForm({ date, setIsModalOpen, task, mode }: FormProps) {
   const dispatch = useDispatch();
-  const displayDate: string = date.format("MMM DD, YYYY");
 
   const handleSubmit = (values: Task) => {
     if (mode === "edit" && task) {
       dispatch(updateTask(values));
     } else {
-      dispatch(addTask({ date: displayDate, task: values }));
+      dispatch(addTask({ date: date, task: values }));
     }
     setIsModalOpen(false);
   };
@@ -62,21 +60,19 @@ function TaskForm({ date, setIsModalOpen, task, mode }: FormProps) {
               />
             </div>
 
-            {/* Date Field */}
             <div className="flex items-center w-full gap-4">
               <ClockCircleOutlined className="text-lg text-gray-400" />
               <div className="flex-1">
                 <div className="flex items-center justify-between">
                   <div className="w-full">
                     <div className="w-full py-4 pl-2 text-lg font-medium tracking-tighter text-gray-500 rounded-lg hover:bg-gray-200">
-                      {displayDate}
+                      {date}
                     </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Description Field */}
             <div className="flex items-start gap-4">
               <AlignLeftOutlined className="mt-2 text-lg text-gray-400" />
               <div className="flex-1">
@@ -94,7 +90,6 @@ function TaskForm({ date, setIsModalOpen, task, mode }: FormProps) {
               </div>
             </div>
 
-            {/* Category Dropdown */}
             <div className="flex items-start gap-4">
               <UnorderedListOutlined className="mt-3 text-lg text-gray-400" />
               <div className="w-full">

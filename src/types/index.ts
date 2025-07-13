@@ -4,7 +4,6 @@ import {
   ExclamationCircleFilled,
   InfoCircleFilled,
 } from "@ant-design/icons";
-import type { Dayjs } from "dayjs";
 
 export const allowedCategories = ["success", "warning", "issue", "info"];
 export type Category = (typeof allowedCategories)[number];
@@ -34,7 +33,7 @@ export const categoryIcons: Record<Category, typeof CheckCircleFilled> = {
 export interface Task {
   id: string;
   title: string;
-  date: Dayjs;
+  date: string;
   description: string;
   category: string;
 }
