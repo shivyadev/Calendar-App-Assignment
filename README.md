@@ -1,69 +1,71 @@
-# React + TypeScript + Vite
+# 📝 Task Manager App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern React application that helps you manage and categorize your daily tasks using a calendar view, modal-based forms, and visual insights through charts. Built with Ant Design, Redux Toolkit, Formik, and Recharts.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📸 Project ScreenShots
 
-## Expanding the ESLint configuration
+![Project Screenshot - Analysis](src\assets\calendar-main-tab.png)
+![Project Screenshot - Analysis](src\assets\calendar-graph-tab.png)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🚀 Features
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+- 📅 **Calendar View**  
+  View tasks organized by date using Ant Design’s `<Calendar />`. Click on any date to add/view tasks.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- 📝 **Add/Edit Tasks**
+
+  - Formik-based modal with validation using Yup
+  - Fields: `Title`, `Description`, `Category`, and auto-filled `Date`
+  - Category options: `Success`, `Warning`, `Issue`, `Info`
+
+- 📋 **Task List**
+
+  - Displays tasks for the selected date
+  - Edit/Delete functionality
+  - Category visualized using Ant Design `Tag` components
+
+- 📊 **Chart Visualization**
+
+  - Bar or Pie chart of task counts per category
+  - Filter by category with `Apply` and `Reset` options
+
+- ⚙️ **State Management**
+  - Fully managed via Redux Toolkit
+  - Task state organized by date for optimized lookups
+  - Selected date tracked globally
+
+---
+
+## 🛠 Tech Stack
+
+| Tech          | Purpose                                              |
+| ------------- | ---------------------------------------------------- |
+| React         | Used to build dynamic and reusable UI components     |
+| Tailwind CSS  | For styling layout and spacing using utility classes |
+| Ant Design    | Pre-styled UI Components                             |
+| Redux Toolkit | Global State Management                              |
+| React-Redux   | Binding Redux to React                               |
+| Formik        | Form State Management                                |
+| Yup           | Form Validation                                      |
+| Recharts      | Data Visualization                                   |
+| Day.js        | Date Formatting and Parsing                          |
+
+## 📦 Installation
+
+```bash
+git clone https://github.com/shivyadev/Calendar-App-Assignment.git
+cd Calendar-App-Assignment
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🚧 Usage
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
 ```
+
+Then press **Ctrl + click** on the provided link.
