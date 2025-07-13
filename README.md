@@ -6,8 +6,8 @@ A modern React application that helps you manage and categorize your daily tasks
 
 ## 📸 Project ScreenShots
 
-![Project Screenshot - Analysis](src\assets\calendar-main-tab.png)
-![Project Screenshot - Analysis](src\assets\calendar-graph-tab.png)
+![Project Screenshot - Calendar](src/assets/calendar-main-tab.png)
+![Project Screenshot - Analysis](src/assets/calendar-graph-tab.png)
 
 ---
 
