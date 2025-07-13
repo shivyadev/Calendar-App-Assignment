@@ -6,6 +6,7 @@ const FormSchema = Yup.object().shape({
     .min(2, "Too Short")
     .max(50, "Maximum word count exceeded")
     .required("Title is required"),
+  date: Yup.date().required("Date is required"),
   description: Yup.string().max(100, "Maximum word count exceeded"),
   category: Yup.mixed()
     .oneOf(allowedCategories, "Invalid category")

@@ -6,22 +6,24 @@ import {
   ClockCircleOutlined,
   UnorderedListOutlined,
 } from "@ant-design/icons";
+import type { Dayjs } from "dayjs";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { nanoid } from "nanoid";
 import { useDispatch } from "react-redux";
 import FormSchema from "./TaskSchema";
 
 interface FormProps {
-  date: string;
+  date: Dayjs;
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function TaskForm({ date, setIsModalOpen }: FormProps) {
   const dispatch = useDispatch();
+  const displayDate: string = date.format("MMM DD, YYYY");
+  console.log(typeof displayDate);
 
   const handleSubmit = (values: Task) => {
-    console.log(values);
-    dispatch(addTask({ date: date, task: values }));
+    dispatch(addTask({ date: displayDate, task: values }));
     setIsModalOpen(false);
   };
 
@@ -31,6 +33,7 @@ function TaskForm({ date, setIsModalOpen }: FormProps) {
         initialValues={{
           id: nanoid(),
           title: "",
+          date: date,
           description: "",
           category: "",
         }}
@@ -50,18 +53,18 @@ function TaskForm({ date, setIsModalOpen }: FormProps) {
               <ErrorMessage
                 name="title"
                 component="div"
-                className="text-red-500 text-sm mt-1"
+                className="mt-1 text-sm text-red-500"
               />
             </div>
 
             {/* Date Field */}
-            <div className="flex items-center gap-4 w-full">
+            <div className="flex items-center w-full gap-4">
               <ClockCircleOutlined className="text-lg text-gray-400" />
               <div className="flex-1">
                 <div className="flex items-center justify-between">
                   <div className="w-full">
-                    <div className="w-full py-4 pl-2 font-medium tracking-tighter text-lg text-gray-500 hover:bg-gray-200 rounded-lg">
-                      {date}
+                    <div className="w-full py-4 pl-2 text-lg font-medium tracking-tighter text-gray-500 rounded-lg hover:bg-gray-200">
+                      {displayDate}
                     </div>
                   </div>
                 </div>
@@ -70,18 +73,18 @@ function TaskForm({ date, setIsModalOpen }: FormProps) {
 
             {/* Description Field */}
             <div className="flex items-start gap-4">
-              <AlignLeftOutlined className="text-lg text-gray-400 mt-2" />
+              <AlignLeftOutlined className="mt-2 text-lg text-gray-400" />
               <div className="flex-1">
                 <Field
                   as="textarea"
                   name="description"
                   placeholder="Add description"
-                  className="w-full h-24 p-2 text-md text-left text-zinc-600 align-top resize-none rounded focus:outline-none bg-gray-200 focus:border-b-4 focus:border-blue-700 focus:placeholder-zinc-600"
+                  className="w-full h-24 p-2 text-left align-top bg-gray-200 rounded resize-none text-md text-zinc-600 focus:outline-none focus:border-b-4 focus:border-blue-700 focus:placeholder-zinc-600"
                 />
                 <ErrorMessage
                   name="description"
                   component="div"
-                  className="text-red-500 text-sm mt-1"
+                  className="mt-1 text-sm text-red-500"
                 />
               </div>
             </div>
@@ -94,7 +97,7 @@ function TaskForm({ date, setIsModalOpen }: FormProps) {
                   <Field
                     name="category"
                     as="select"
-                    className="w-full appearance-none h-11 px-2 bg-gray-200 rounded focus:outline-none focus:border-b-4 focus:border-blue-700 cursor-pointer"
+                    className="w-full px-2 bg-gray-200 rounded appearance-none cursor-pointer h-11 focus:outline-none focus:border-b-4 focus:border-blue-700"
                   >
                     <option value="" disabled hidden className="text-gray-200">
                       Select Category
@@ -104,21 +107,21 @@ function TaskForm({ date, setIsModalOpen }: FormProps) {
                     <option value="issue">Issue</option>
                     <option value="info">Information</option>
                   </Field>
-                  <div className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-gray-500">
+                  <div className="absolute text-gray-500 -translate-y-1/2 pointer-events-none right-2 top-1/2">
                     <ArrowDownOutlined />
                   </div>
                 </div>
                 <ErrorMessage
                   name="category"
                   component="div"
-                  className="text-red-500 text-sm mt-1"
+                  className="mt-1 text-sm text-red-500"
                 />
               </div>
             </div>
-            <div className="w-full flex justify-end">
+            <div className="flex justify-end w-full">
               <button
                 type="submit"
-                className="bg-blue-700 py-3 px-7 text-gray-200 font-semibold rounded-full hover:bg-blue-600 hover:text-white transition-all duration-300 cursor-pointer"
+                className="py-3 font-semibold text-gray-200 transition-all duration-300 bg-blue-700 rounded-full cursor-pointer px-7 hover:bg-blue-600 hover:text-white"
               >
                 Save
               </button>
