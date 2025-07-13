@@ -13,7 +13,10 @@ import TaskModal from "./TaskModal";
 function CalendarTab() {
   const [isAddModalOpen, setIsAddModalOpen] = useState<boolean>(false);
   const [isTaskModalOpen, setIsTaskModalOpen] = useState<boolean>(false);
-  const [selectedDate, setSelectedDate] = useState<Dayjs>(dayjs());
+  const [selectedDate, setSelectedDate] = useState<Dayjs | undefined>(
+    undefined
+  );
+  const [currentViewDate, setCurrentViewDate] = useState<Dayjs>(dayjs());
   const [selectedTask, setSelectedTask] = useState<Task>({
     id: "",
     title: "",
@@ -21,18 +24,29 @@ function CalendarTab() {
     description: "",
     category: "default",
   });
+
   const task = useSelector((state: RootState) => state.tasks);
 
   const handleSelect = (date: Dayjs) => {
     if (isTaskModalOpen) {
       return;
     }
-    setSelectedDate(date);
-    setIsAddModalOpen(true);
+    if (
+      date.month() === currentViewDate.month() &&
+      date.year() === currentViewDate.year()
+    ) {
+      setSelectedDate(date);
+      setIsAddModalOpen(true);
+    }
+  };
+
+  const handlePanelChange = (date: Dayjs) => {
+    setCurrentViewDate(date);
+    setSelectedDate(undefined);
   };
 
   const handleAddModalClose = () => {
-    setSelectedDate(dayjs());
+    setSelectedDate(undefined);
     setIsAddModalOpen(false);
   };
 
@@ -78,6 +92,7 @@ function CalendarTab() {
         locale={customLocale}
         onSelect={handleSelect}
         cellRender={cellRender}
+        onPanelChange={handlePanelChange}
       />
 
       {/* Add new task modal */}
@@ -88,7 +103,7 @@ function CalendarTab() {
         footer={[]}
       >
         <TaskForm
-          date={selectedDate}
+          date={selectedDate ?? dayjs()}
           setIsModalOpen={setIsAddModalOpen}
           mode="add"
         />

@@ -22,13 +22,11 @@ interface FormProps {
 function TaskForm({ date, setIsModalOpen, task, mode }: FormProps) {
   const dispatch = useDispatch();
   const displayDate: string = date.format("MMM DD, YYYY");
-  console.log(typeof displayDate);
 
   const handleSubmit = (values: Task) => {
     if (mode === "edit" && task) {
       dispatch(updateTask(values));
     } else {
-      const displayDate: string = date.format("MMM DD, YYYY");
       dispatch(addTask({ date: displayDate, task: values }));
     }
     setIsModalOpen(false);
