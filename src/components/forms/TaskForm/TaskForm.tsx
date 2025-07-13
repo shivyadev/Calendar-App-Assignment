@@ -1,4 +1,4 @@
-import { addTask } from "@/features/tasks/taskSlice";
+import { addTask, updateTask } from "@/features/tasks/taskSlice";
 import type { Task } from "@/types";
 import {
   AlignLeftOutlined,
@@ -15,15 +15,22 @@ import FormSchema from "./TaskSchema";
 interface FormProps {
   date: Dayjs;
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  task?: Task;
+  mode?: "edit" | "add";
 }
 
-function TaskForm({ date, setIsModalOpen }: FormProps) {
+function TaskForm({ date, setIsModalOpen, task, mode }: FormProps) {
   const dispatch = useDispatch();
   const displayDate: string = date.format("MMM DD, YYYY");
   console.log(typeof displayDate);
 
   const handleSubmit = (values: Task) => {
-    dispatch(addTask({ date: displayDate, task: values }));
+    if (mode === "edit" && task) {
+      dispatch(updateTask(values));
+    } else {
+      const displayDate: string = date.format("MMM DD, YYYY");
+      dispatch(addTask({ date: displayDate, task: values }));
+    }
     setIsModalOpen(false);
   };
 
@@ -31,11 +38,11 @@ function TaskForm({ date, setIsModalOpen }: FormProps) {
     <div>
       <Formik
         initialValues={{
-          id: nanoid(),
-          title: "",
-          date: date,
-          description: "",
-          category: "",
+          id: task?.id || nanoid(),
+          title: task?.title || "",
+          date: task?.date || date,
+          description: task?.description || "",
+          category: task?.category || "",
         }}
         enableReinitialize
         validationSchema={FormSchema}
@@ -79,7 +86,7 @@ function TaskForm({ date, setIsModalOpen }: FormProps) {
                   as="textarea"
                   name="description"
                   placeholder="Add description"
-                  className="w-full h-24 p-2 text-left align-top bg-gray-200 rounded resize-none text-md text-zinc-600 focus:outline-none focus:border-b-4 focus:border-blue-700 focus:placeholder-zinc-600"
+                  className="w-full h-24 p-2 font-medium text-left align-top bg-gray-200 rounded resize-none text-md text-zinc-600 focus:outline-none focus:border-b-4 focus:border-blue-700 focus:placeholder-zinc-600"
                 />
                 <ErrorMessage
                   name="description"

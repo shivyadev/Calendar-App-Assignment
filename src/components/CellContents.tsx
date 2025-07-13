@@ -2,7 +2,7 @@ import { categoryIcons, categoryStyle, type Task } from "@/types";
 
 interface Props {
   taskList: Task[];
-  setSelectedTask: React.Dispatch<React.SetStateAction<Task | null>>;
+  setSelectedTask: React.Dispatch<React.SetStateAction<Task>>;
   setIsTaskModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
