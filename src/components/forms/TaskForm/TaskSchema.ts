@@ -1,4 +1,4 @@
-import { allowedCategories } from "@/types";
+import { allowedCategories } from "@/utils/constants";
 import * as Yup from "yup";
 
 const FormSchema = Yup.object().shape({

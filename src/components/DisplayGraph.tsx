@@ -1,4 +1,4 @@
-import { graphCategoryColors } from "@/types";
+import { graphCategoryColors } from "@/utils/constants";
 import {
   Bar,
   BarChart,

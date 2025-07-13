@@ -1,5 +1,5 @@
-import { categoryIcons, categoryStyle, type Task } from "@/types";
-
+import { type Task } from "@/types";
+import { categoryIcons, categoryStyle } from "@/utils/constants";
 interface Props {
   taskList: Task[];
   setSelectedTask: React.Dispatch<React.SetStateAction<Task>>;

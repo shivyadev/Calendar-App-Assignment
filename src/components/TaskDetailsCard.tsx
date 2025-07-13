@@ -1,4 +1,5 @@
-import { type Category, categoryStyle, type Task } from "@/types";
+import type { Category, Task } from "@/types";
+import { categoryStyle } from "@/utils/constants";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 
