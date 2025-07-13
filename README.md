@@ -69,3 +69,9 @@ npm run dev
 ```
 
 Then press **Ctrl + click** on the provided link.
+
+---
+
+## Future improvements
+
+- LocalStorage integration to persist state across refresh.
